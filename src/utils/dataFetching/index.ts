@@ -24,10 +24,9 @@ export async function fetchAnime(url: URL, contentType?: "tv" | "movie" | "ova" 
 
     const res = await fetch(url.toString(), options);
 
-    // if (!res.ok) throw new Error("found error while fetching anime movies")
+    if (!res.ok) throw new Error("found error while fetching anime movies")
 
     const data = await res.json() as ITopAnime;
-
     return data.data
 }
 
@@ -40,7 +39,13 @@ export const getTopAnimeMovies = async () => {
 
 export const getTopAnimeSeries = async () => {
     const newURL = new URL("https://api.jikan.moe/v4/top/anime")
-    const res = await fetchAnime(newURL, "tv")
+    const res = await fetchAnime(newURL, "tv",)
+    return res
+}
+
+export const getTopAnimeSeries_paginated = async () => {
+    const newURL = new URL("https://api.jikan.moe/v4/top/anime")
+    const res = await fetchAnime(newURL, "tv", "airing")
     return res
 }
 

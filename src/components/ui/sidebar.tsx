@@ -1,7 +1,7 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import Logo from "../common/logo";
 import Link from "next/link";
-import { Film, HomeIcon, Tv } from "lucide-react";
+import { Film, HomeIcon, LogInIcon, LucideBookMarked, Tv } from "lucide-react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 type TNavLinks = {
@@ -9,6 +9,7 @@ type TNavLinks = {
   icon: ReactElement;
   isActive?: boolean;
 };
+
 const Sidebar = async () => {
   const navlinks: TNavLinks[] = [
     { path: "/", icon: <HomeIcon /> },
@@ -16,7 +17,7 @@ const Sidebar = async () => {
     { path: "/tv-series", icon: <Tv /> },
   ];
   return (
-    <nav className="w-full sticky top-5 left-0 md:w-32  my-auto md:rounded-2xl bg-gray-900 flex flex-row md:flex-col items-center justify-between gap-4 p-4 md:px-0 py-4">
+    <nav className="w-full sticky top-5 z-30 left-0 md:w-32  my-auto md:rounded-2xl bg-gray-900 flex flex-row md:flex-col items-center justify-between gap-4 p-4 md:px-0 py-4">
       <Link href="/">
         <Logo />
       </Link>
@@ -32,10 +33,17 @@ const Sidebar = async () => {
       </ul>
 
       <SignedOut>
-        <SignInButton />
+        <button className="" title="Login">
+          <SignInButton>
+            <LogInIcon />
+          </SignInButton>
+        </button>
       </SignedOut>
       <SignedIn>
-        <UserButton />
+        <Link href={"/saved"}>
+          <LucideBookMarked />
+        </Link>
+        <UserButton userProfileMode="modal" />
       </SignedIn>
     </nav>
   );

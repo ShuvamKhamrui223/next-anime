@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Sidebar from "@/components/ui/sidebar";
 import Searchbar from "@/components/ui/searchbar";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ToastContainer } from "react-toastify";
+import ClientWrapper from "@/components/wrapper/ClientWrapper";
 
 export const metadata: Metadata = {
   title: "hotster clone with next js",
@@ -15,16 +16,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
+    <html lang="en">
+      <ClientWrapper>
         <body className={` flex items-center md:flex-row flex-col lg:px-[2%]`}>
+          <ToastContainer
+            autoClose={2}
+            limit={3}
+            newestOnTop
+            position="top-right"
+          />
           <Sidebar />
-          <div className="w-full min-h-screen px-4 mb-10">
+          <main className="w-full min-h-screen px-4 mb-10">
             <Searchbar />
             {children}
-          </div>
+          </main>
         </body>
-      </html>
-    </ClerkProvider>
+      </ClientWrapper>
+    </html>
   );
 }
