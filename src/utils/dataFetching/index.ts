@@ -1,5 +1,6 @@
 import { ISearchedAnime } from "@/types/searchedAnime"
 import { ITopAnime } from "@/types/topAnime"
+import { notFound } from "next/navigation";
 
 const options: RequestInit = {
     method: "GET",
@@ -24,7 +25,7 @@ export async function fetchAnime(url: URL, contentType?: "tv" | "movie" | "ova" 
 
     const res = await fetch(url.toString(), options);
 
-    if (!res.ok) throw new Error("found error while fetching anime movies")
+    if (!res.ok) notFound()
 
     const data = await res.json() as ITopAnime;
     return data.data
