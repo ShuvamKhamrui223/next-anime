@@ -1,13 +1,7 @@
 import TrendingCard from "@/components/Cards/TrendingCard";
 import { getTopAnimeMovies } from "@/utils/dataFetching";
-import { FC } from "react";
 
-type Props = {
-  searchParams: Promise<{
-    page?: number;
-  }>;
-};
-const MoviesPage: FC<Props> = async () => {
+const MoviesPage = async () => {
   const allMovies = await getTopAnimeMovies();
   return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 : gap-4 md:gap-8">
