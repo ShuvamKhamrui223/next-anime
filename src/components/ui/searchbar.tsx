@@ -25,7 +25,7 @@ const Searchbar = () => {
   return (
     <form
       onSubmit={handleSubmit(submitHandler)}
-      className="flex items-center gap-2 px-4 py-6 mt-4 md:mt-0"
+      className="flex items-center gap-2 px-4 py-6 md:mt-0"
     >
       <SearchIcon className="text-gray-400" />
       <input

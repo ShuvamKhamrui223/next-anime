@@ -9,7 +9,7 @@ type Props = {
 
 const SearchResultCard: FC<Props> = ({ result }) => {
   return (
-    <li className=" snap-center flex items-start gap-2">
+    <li className=" snap-center flex items-start flex-col md:flex-row gap-4 bg-gradient-to-t from-transparent to-gray-800 md:bg-gradient-to-l  p-4 rounded-2xl">
       <Image
         src={result.images.webp.image_url}
         alt={result.title_english || result.title}
@@ -18,17 +18,14 @@ const SearchResultCard: FC<Props> = ({ result }) => {
         loading="lazy"
         className="rounded-2xl aspect-video object-cover"
       />
-      <div className=" px-3 py-2 flex flex-col items-start">
-        <div className="flex gap-2">
-          <h4 className="text-gray-300 text-base">{result.year}</h4>
-          <h4 className="uppercase">{result.type}</h4>
-        </div>
-        <h3 className="text-gray-300 text-2xl capitalize font-medium">
+      <div className="py-2 flex flex-col items-start">
+        <h4 className="uppercase text-xs text-gray-400">{result.type}</h4>
+        <h3 className="text-gray-300 text-xl capitalize font-medium">
           {result.title_english || result.title}
         </h3>
-        <div className="flex gap-2">
-          <p className="">{result.duration}</p>
-          <p className="">
+        <div className="flex gap-2 my-2 ">
+          <p className="text-xs text-gray-400">{result.duration}</p>
+          <p className="text-xs text-gray-400">
             {result?.episodes && "total episodes " + result.episodes}
           </p>
         </div>
@@ -37,6 +34,7 @@ const SearchResultCard: FC<Props> = ({ result }) => {
             <Link
               href={`/genre/${genre.name.toLowerCase()}`}
               key={genre.mal_id}
+              className="text-xs text-emerald-500"
             >
               {genre.name}
             </Link>

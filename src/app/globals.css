@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --sidebar-height: 90vh;
 }
 ::-webkit-scrollbar {
   height: 0.4rem;

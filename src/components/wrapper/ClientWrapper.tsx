@@ -1,5 +1,5 @@
 "use client";
-import { ClerkProvider } from "@clerk/nextjs";
+// import { ClerkProvider } from "@clerk/nextjs";
 
 export default function ClientWrapper({
   children,
@@ -8,7 +8,7 @@ export default function ClientWrapper({
 }>) {
   return (
     <>
-      <ClerkProvider>{children}</ClerkProvider>
+      <>{children}</>
     </>
   );
 }

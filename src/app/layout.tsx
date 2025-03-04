@@ -3,7 +3,7 @@ import "./globals.css";
 import Sidebar from "@/components/ui/sidebar";
 import Searchbar from "@/components/ui/searchbar";
 import { ToastContainer } from "react-toastify";
-import ClientWrapper from "@/components/wrapper/ClientWrapper";
+// import ClientWrapper from "@/components/wrapper/ClientWrapper";
 
 export const metadata: Metadata = {
   title: "hotster clone with next js",
@@ -17,21 +17,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ClientWrapper>
-        <body className={` flex items-center md:flex-row flex-col lg:px-[2%]`}>
+      {/* <ClientWrapper> */}
+      <body
+        className={` flex items-start md:flex-row flex-col lg:px-[2%]`}
+      >
+        <Sidebar />
+        <main className="w-full min-h-screen ">
           <ToastContainer
             autoClose={2}
             limit={3}
             newestOnTop
             position="top-right"
           />
-          <Sidebar />
-          <main className="w-full min-h-screen px-4 mb-10">
-            <Searchbar />
-            {children}
-          </main>
-        </body>
-      </ClientWrapper>
+          <Searchbar />
+          <div className="px-[2%]">{children}</div>
+        </main>
+      </body>
+      {/* </ClientWrapper> */}
     </html>
   );
 }

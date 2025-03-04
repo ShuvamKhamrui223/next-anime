@@ -4,12 +4,6 @@ import { FC } from "react";
 
 // types import
 import { Daum } from "@/types/topAnime";
-import { CheckIcon } from "lucide-react";
-import { currentUser } from "@clerk/nextjs/server";
-
-// server actions
-
-import WatchLaterButton from "../Buttons/WatchLaterButton";
 
 // local type declaration
 type TTrendingCard = {
@@ -17,40 +11,29 @@ type TTrendingCard = {
 };
 
 const TrendingCard: FC<TTrendingCard> = async ({ cardContent }) => {
-  const user = await currentUser();
+  // const user = await currentUser();
 
   return (
-    <li className="rounded-2xl overflow-hidden snap-center basis-40 list-none flex-shrink-0 ">
-      <div className="relative h-52 flex-shrink-0">
+    <li className="snap-center basis-36 list-none flex flex-col gap-2 flex-shrink-0 p-2">
+      <div className="relative h-[200px] w-full">
         <Image
           src={cardContent.images.webp.image_url}
           alt="trending movies"
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover rounded-xl"
           loading="lazy"
         />
-        <div className="z-10 absolute bottom-0 left-0 w-full bg-gradient-to-t to-transparent from-gray-950 px-3 py-2">
-          <div className="flex gap-2">
-            <h4 className="text-gray-300 text-base">2022</h4>
-            <h4 className="uppercase">movie</h4>
-          </div>
-          <h3 className="text-gray-300 text-xl capitalize font-medium">
-            {cardContent.title}
-          </h3>
-        </div>
       </div>
-      <div className="flex items-center w-full divide-x divide-gray-700">
-        <WatchLaterButton
-          contentID={cardContent.mal_id.toString()}
-          userEmail={
-            user?.primaryEmailAddress?.emailAddress !== undefined
-              ? user?.primaryEmailAddress?.emailAddress
-              : user?.id
-          }
-        />
-        <button className="px-4 py-2 cursor-pointer bg-gray-800">
-          <CheckIcon />
-        </button>
+      <div className="w-full">
+        <div className="flex gap-2">
+          <h4 className="text-gray-400 text-xs">2022</h4>
+          <h4 className="uppercase text-xs text-gray-400">movie</h4>
+        </div>
+        <h3 className="text-gray-300 text-sm capitalize font-semibold">
+          {cardContent.title.length > 30
+            ? cardContent.title.slice(0, 30)
+            : cardContent.title}
+        </h3>
       </div>
     </li>
   );
